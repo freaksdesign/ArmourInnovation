@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Armour Innovation LLC</title>
+<style>
+body,
+html {
+  padding: 0px;
+  margin: 0px;
+  height: 100vh;
+  font-family: "Julius Sans One", sans-serif;
+  /* If you want the coming soon to go down */
+  /* justify-content: space-between; */
+}
+.container {
+  padding: 10px;
+  height: 100%;
+  background-image: url("background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+h1,
+p {
+  color: white;
+  text-align: center;
+padding: 20px;
+}
+h1 {
+  font-size: 6rem;
+  font-weight: bold;
+}
+p {
+  font-size: 5vw;
+}
+@media (max-width: 500px) {
+.container{
+flex-direction: column;
+}
+p{
+font-size:8vw;
+}
+}
+</style>
+</head>
+<body>
+ <div class="container">
+      <img src="logo.png" style="width: 50%; max-width: 300px" />
+      <p>COMING SOON</p>
+  </div>
+</body>
+</html>
