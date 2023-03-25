@@ -250,7 +250,7 @@ p{
    
 }
 .text-name-about{
-    font-size: 7.5rem;
+    font-size: clamp(25px, 7.5rem, 10vw);
     font-weight: 500;
     font-family: serif;
     line-height: 1;
