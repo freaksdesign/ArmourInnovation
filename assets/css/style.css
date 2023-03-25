@@ -257,6 +257,13 @@ p{
     color: var(--clr-darkblue);
 
 }
+@media screen and (max-width: 768px) 
+{
+.text-name-about{
+    font-size: 25px;
+}    
+}
+
 .text-name-about:nth-of-type(2){
     margin-left: .5ch;
 }
