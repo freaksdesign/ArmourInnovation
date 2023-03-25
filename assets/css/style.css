@@ -157,7 +157,7 @@ p{
 .nav-header .nav-link.active{
     color: var(--clr-white);
     text-decoration: none;
-    border: 1px solid var(--clr-white);
+    border: 1px solid var(--clr-white) !important;
 }
 
 .nav-header .nav-link.active:hover, .nav-header .nav-link.active:focus{
@@ -262,6 +262,9 @@ p{
 .text-name-about{
     font-size: 50x;
 }    
+.dropdown-menu{
+    display:block;
+}
 }
 
 .text-name-about:nth-of-type(2){
