@@ -414,4 +414,8 @@ p{
     z-index: 0;
   }
 
-  
+  .video-thumbnail {
+    width: 100%;
+    aspect-ratio: 16/9;
+    cursor: pointer;
+  }
