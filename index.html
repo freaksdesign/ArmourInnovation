@@ -1,156 +1,367 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Armour Innovation LLC</title>
-    <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Armour Innovation LLC | Web and IT Systems for Arizona Businesses</title>
+<meta name="description" content="Armour Innovation builds websites and runs the systems behind them for Arizona businesses, designed around how they fail rather than only how they work.">
+<link rel="canonical" href="https://armourinnovation.com/">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="assets/css/style.css">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://armourinnovation.com/">
+<meta property="og:title" content="Armour Innovation LLC | Web and IT Systems for Arizona Businesses">
+<meta property="og:description" content="Websites and the systems behind them, designed around how they fail rather than only how they work.">
+<meta property="og:image" content="https://armourinnovation.com/assets/img/logo-mark.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/svg+xml" href="assets/img/logo-mark.svg">
+<link rel="preload" href="assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Armour Innovation LLC",
+  "url": "https://armourinnovation.com/",
+  "logo": "https://armourinnovation.com/assets/img/logo-mark.png",
+  "description": "Web development and IT systems support for small and mid-size businesses in Arizona.",
+  "areaServed": { "@type": "State", "name": "Arizona" },
+  "founder": { "@type": "Person", "name": "Chris Armour" }
+}
+</script>
 </head>
-<body class="h-100">
-  
-    <header>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
 
+<header class="site-header">
+  <div class="wrap">
+    <nav class="nav" aria-label="Primary">
+      <a class="nav__brand" href="/" aria-label="Armour Innovation home">
+        <img class="brand-mark" src="assets/img/logo-mark.svg" alt="" width="41" height="30" aria-hidden="true">
+        <span class="brand-name">Armour Innovation</span>
+      </a>
+      <ul class="nav__links">
+        <li><a class="nav__link" href="/" aria-current="page">Home</a></li>
+        <li><a class="nav__link" href="/about.html">About</a></li>
+        <li><a class="nav__link" href="/services.html">Services</a></li>
+        <li><a class="nav__link" href="/approach.html">Approach</a></li>
+        <li><a class="nav__link" href="/contact.html">Contact</a></li>
+      </ul>
+      <div class="nav__cta"><a class="btn btn--primary btn--sm" href="/contact.html">Get a quote</a></div>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-drawer" aria-label="Open menu">&#9776;</button>
+    </nav>
+    <div class="nav__drawer" id="nav-drawer" data-open="false">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/services.html">Services</a></li>
+        <li><a href="/approach.html">Approach</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+      <a class="btn btn--primary" href="/contact.html">Get a quote</a>
+    </div>
+  </div>
+</header>
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
-          <div class="container">
-            <a class="navbar-brand" href="/">
-              <img src="assets/img/logo-horizontal.png" alt="Logo" class="img-logo-header">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="ms-auto navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/">Home</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link" href="/about.html">
-                    About
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="/about.html#Experience">Experience</a></li>
-                    <li><a class="dropdown-item" href="/about.html#Certification">Certification</a></li>
-                    <li><a class="dropdown-item" href="/about.html#Skills">Skills</a></li>
-                    <li><a class="dropdown-item" href="/about.html#Education">Education</a></li>
-                    <li><a class="dropdown-item" href="/about.html#Extracurricular">Extracurricular</a></li>
-                  </ul>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/projects.html">Projects</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/sip.html">SIP</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/boards.html">Boards</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/whitepapers.html">Whitepapers</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/contact.html">Contact</a>
-                </li>
-              </ul>
-            </div>
+<main id="main">
+
+  <!-- Hero: type-led asymmetric split, brand mark as the visual anchor -->
+  <section class="hero invert">
+    <div class="wrap">
+      <div class="hero__grid">
+        <div>
+          <h1 class="display" data-enter>Built by someone who knows how it breaks.</h1>
+          <p class="lede" data-enter style="--enter-delay:110ms;margin-top:1.75rem">
+            Armour Innovation builds websites and runs the systems behind them for
+            Arizona businesses.
+          </p>
+          <div class="btn-row" data-enter style="--enter-delay:220ms">
+            <a class="btn btn--primary" href="/contact.html">Get a quote</a>
+            <a class="btn btn--line" href="/approach.html">How we work</a>
           </div>
-        </nav>
-        
-
-      </header>
-
-      <div class="container d-flex flex-wrap  align-items-center justify-content-center flex-grow-1">
-        <div class="col-lg-6 col-12 p-3">
-            <div class="text-home">
-            <h1>Network Security Student</h1>
-            <h1>Full Stack Developer</h1>
-            <p>Hi, I am Chris Armour.<br>
-                ​As a developer who thrives on challenge and discovery, I embrace the latest advancements in technology and leverage them to create elegant, forward-thinking solutions that exceed client expectations
-            </p>
-            </div>
-            <div class="py-2">
-                <a  href="https://www.linkedin.com/in/chrisarmouraz/"><i class="fa-brands fa-linkedin icon-home"></i></a>
-                <a href="https://github.com/freaksdesign"><i class="fa-brands fa-square-github icon-home"></i></a>
-            </div>
-  
         </div>
-        <div class="col-lg-6 col-12 p-3">
-            <img class="img-profile-home" src="assets/img/profile-photo.jpg" />
+        <div data-enter style="--enter-delay:150ms">
+<picture class="media media--4x3 media--hold-left">
+            <source srcset="assets/img/hero-office.webp" type="image/webp">
+            <img src="assets/img/hero-office.jpg" alt="An empty small-business office in early morning light, with one monitor switched on." width="1200" height="900" fetchpriority="high" decoding="async">
+          </picture>
         </div>
-      
-      
-      
-      
       </div>
-    
-    
+    </div>
+  </section>
 
+  <!-- Services: rule blocks, no cards -->
+  <section class="section section--line">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <h2 class="h2">Two services. One person accountable.</h2>
+        <p class="prose">
+          Most businesses buy their website from one vendor and their IT from
+          another, then spend their own time carrying messages between them. That
+          gap is where things sit broken for a week.
+        </p>
+      </div>
 
+      <div class="rules">
+        <article class="rule" data-reveal>
+          <div class="rule__label"><h3 class="rule__title">Websites and web apps</h3></div>
+          <div class="rule__body">
+            <p>
+              Fast, standards-based pages you own outright. The code, the domain,
+              and the hosting account are registered in your business name, so
+              leaving is always an option you have.
+            </p>
+            <ul class="inline-list">
+              <li>Marketing sites and booking flows</li>
+              <li>Rebuilds and platform migrations</li>
+              <li>Hosting, domains, and SSL</li>
+              <li>Analytics and search setup</li>
+            </ul>
+          </div>
+        </article>
 
+        <article class="rule" data-reveal>
+          <div class="rule__label"><h3 class="rule__title">IT and systems</h3></div>
+          <div class="rule__body">
+            <p>
+              The layer underneath: who can log into what, where the data lives,
+              and whether you could actually restore it on the day you need to.
+              Most businesses find out the answer to that last one too late.
+            </p>
+            <ul class="inline-list">
+              <li>Network, Wi-Fi, and firewall setup</li>
+              <li>Microsoft 365 administration</li>
+              <li>Backups, tested on a schedule</li>
+              <li>Onboarding and offboarding</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
-        <footer >
-            <div class="px-3 py-3 text-bg-dark">
-              <div class="container">
-                <div class="d-flex flex-wrap justify-content-between">
-                  <div  class="d-flex col-12 col-lg-auto justify-content-center align-items-center text-nowrap clr-gray">
-                    <img class="img-logo-footer" src="assets/img/logo-reg.png" />
-                    <span >&copy; 2024 Armour Innovation LLC, All rights reserved.</span>
-                  </div>
-        
-                  <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small nav-footer">
-                    <li>
-                      <a href="/" class="nav-link">
-                        
-                        Home
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/about.html" class="nav-link">
-                      
-                        About
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/projects.html" class="nav-link">
-                        
-                        Projects
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/sip.html" class="nav-link">
-                   
-                        SIP
-                      </a>
-                    </li>
-                    <li>
-                      <a href="/boards.html" class="nav-link">
-                        Boards
-                      </a>
-                    </li>
-                    <li>
-                        <a href="/contact.html" class="nav-link">
-                         
-                         Contact
-                        </a>
-                      </li>
-                  </ul>
-                  <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-                    <li class="ms-3"><a  href="https://www.linkedin.com/in/chrisarmouraz/"><i class="fa-brands fa-linkedin icon-footer"></i></a></li>
-                    <li class="ms-3"><a href="https://github.com/freaksdesign"><i class="fa-brands fa-square-github icon-footer"></i></a></li>
-                   
-                  </ul>
-                </div>
-              </div>
-            </div>
-    
-        </footer>
+  <!-- Differentiator: the adversarial angle, full-width statement -->
+  <section class="section section--fill">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <h2 class="h2">We design for the bad day.</h2>
+        <p class="prose">
+          Anyone can build something that works when every input is correct and
+          nothing is under load. That is the easy half. The question worth paying
+          for is what your system does when a customer mistypes a card number, a
+          laptop walks out of the office, or a vendor account gets reused.
+        </p>
+        <p class="prose">
+          We plan for those cases before they are incidents, because fixing them
+          afterwards costs more and always arrives at a worse moment.
+        </p>
+      </div>
 
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  
+      <div class="page-media" data-reveal>
+        <picture class="media media--16x9">
+            <source srcset="assets/img/sec-bad-day.webp" type="image/webp">
+            <img src="assets/img/sec-bad-day.jpg" alt="A small business server cabinet with neatly bundled network cabling and a single red patch cable." width="1600" height="900" loading="lazy" decoding="async">
+          </picture>
+      </div>
+
+      <div class="groups">
+        <div class="group" data-reveal>
+          <h3>You keep control</h3>
+          <ul>
+            <li>Domains and hosting in your business name</li>
+            <li>Administrator access you hold, not us</li>
+            <li>No proprietary platform lock-in</li>
+            <li>Your data exportable on request</li>
+          </ul>
+        </div>
+        <div class="group" data-reveal>
+          <h3>Written down</h3>
+          <ul>
+            <li>What was built and why</li>
+            <li>How it is configured</li>
+            <li>What breaks first under stress</li>
+            <li>What to do when it does</li>
+          </ul>
+        </div>
+        <div class="group" data-reveal>
+          <h3>Priced up front</h3>
+          <ul>
+            <li>Fixed quote before work starts</li>
+            <li>Scope changes quoted separately</li>
+            <li>No hourly surprises</li>
+            <li>Month to month, no lock-in</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process: verb-led steps -->
+  <section class="section section--line">
+    <div class="wrap">
+      <div class="section-head" data-reveal><h2 class="h2">How a project runs.</h2></div>
+      <div class="steps">
+        <div class="step" data-reveal>
+          <h3>Talk</h3>
+          <p>
+            A call to find out what you have, what keeps failing, and roughly what
+            it costs to fix. You get a straight answer even if that answer is that
+            you do not need us.
+          </p>
+        </div>
+        <div class="step" data-reveal>
+          <h3>Scope</h3>
+          <p>
+            The work, the timeline, and the price on one page, agreed in writing
+            before anything is touched.
+          </p>
+        </div>
+        <div class="step" data-reveal>
+          <h3>Maintain</h3>
+          <p>
+            Most clients stay on monthly, so the person who built the thing is the
+            person who keeps it running.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Engagement models: two columns split by a rule -->
+  <section class="section section--fill">
+    <div class="wrap">
+      <div class="section-head" data-reveal><h2 class="h2">Two ways to engage.</h2></div>
+      <div class="models">
+        <div class="model" data-reveal>
+          <h3>Fixed-price project</h3>
+          <p>
+            For work with a defined end: a new site, a migration, an office move,
+            a network rebuild.
+          </p>
+          <ul class="inline-list" style="grid-template-columns:1fr">
+            <li>Scope and price agreed before starting</li>
+            <li>Handover documentation included</li>
+            <li>Changes quoted, never assumed</li>
+          </ul>
+        </div>
+        <div class="model" data-reveal>
+          <h3>Monthly support</h3>
+          <p>
+            For the part that never ends: someone who already knows your setup and
+            answers the phone.
+          </p>
+          <ul class="inline-list" style="grid-template-columns:1fr">
+            <li>Set support hours each month</li>
+            <li>Patching, backup checks, site updates</li>
+            <li>Cancel with 30 days notice</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ: native disclosure, handles the real objections -->
+  <section class="section section--line">
+    <div class="wrap wrap--tight">
+      <div class="section-head" data-reveal><h2 class="h2">Questions worth asking.</h2></div>
+      <div class="faq" data-reveal>
+        <details>
+          <summary>What happens if we stop working together?</summary>
+          <div class="faq__body">
+            <p>
+              You keep everything. The domain, the hosting account, and the
+              administrator credentials are in your business name from day one, and
+              the documentation goes with you. Nothing here is designed to make
+              leaving expensive.
+            </p>
+          </div>
+        </details>
+        <details>
+          <summary>Do you charge for the first conversation?</summary>
+          <div class="faq__body">
+            <p>
+              No. The first call exists so both of us can find out whether this is
+              a fit. If your problem is outside what we do well, you will be told
+              that on the call rather than three weeks into an invoice.
+            </p>
+          </div>
+        </details>
+        <details>
+          <summary>Our current site was built by someone we cannot reach.</summary>
+          <div class="faq__body">
+            <p>
+              That is a common starting point. The first step is establishing what
+              you actually control: the domain registrar, the hosting, the DNS.
+              Recovering those is usually possible, and it is worth doing before
+              anything gets rebuilt.
+            </p>
+          </div>
+        </details>
+        <details>
+          <summary>Are you big enough to handle our business?</summary>
+          <div class="faq__body">
+            <p>
+              For a business of roughly five to fifty people, yes. Above that, or
+              if you need staffed coverage around the clock, you need a larger
+              provider and you will be told so.
+            </p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section cta">
+    <div class="wrap">
+      <div class="cta__inner" data-reveal>
+        <div>
+          <h2 class="h2">Tell us what is breaking.</h2>
+          <p class="prose" style="margin-top:1rem">
+            Describe the problem in a few sentences. You get a reply within one
+            business day and a fixed quote after a short call.
+          </p>
+        </div>
+        <div><a class="btn btn--primary" href="/contact.html">Get a quote</a></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer invert">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a class="nav__brand" href="/">
+          <span class="brand-name">Armour Innovation</span>
+        </a>
+        <p>Web development and IT systems for small and mid-size businesses across Arizona.</p>
+      </div>
+      <div>
+        <h2>Site</h2>
+        <ul>
+          <li><a href="/services.html">Services</a></li>
+          <li><a href="/approach.html">Approach</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Contact</h2>
+        <ul>
+          <li><a href="/contact.html">Request a quote</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bar">
+      <span>&copy; 2026 Armour Innovation LLC. All rights reserved.</span>
+      <span>Arizona, United States</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js" defer></script>
 </body>
 </html>

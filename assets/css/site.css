@@ -1,0 +1,681 @@
+/* ==========================================================================
+   Armour Innovation LLC - light design system
+   Native CSS, no framework. Dials: variance 8 / motion 6 / density 3.
+
+   Committed light. This build does NOT follow prefers-color-scheme; it is light
+   for every visitor. Hairlines are darker than a dark-theme inversion would give
+   (thin rules disappear on paper) and headings carry slightly more weight,
+   because type reads thinner on a light ground than on a dark one.
+
+   Shape rule (locked): 2px on everything. Sharp, not soft. No pills.
+   Accent rule (locked): brand red is a SIGNAL, never a decorative fill.
+     It marks the primary action, the active nav item, and rule accents.
+   Structure rule: hairline rules and negative space carry hierarchy.
+     There are no bordered content cards in this system.
+   ========================================================================== */
+
+/* --- Fonts ------------------------------------------------------------- */
+@font-face {
+  font-family: "Geist";
+  src: url("../fonts/geist-latin.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Geist Mono";
+  src: url("../fonts/geist-mono-latin.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* --- Tokens: dark is the origin ---------------------------------------- */
+:root {
+  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas,
+    monospace;
+
+  /* Off-white ground, cool neutral to sit with the slate in the mark. */
+  --bg: #eff0f3;               /* main page ground */
+  --surface: #fbfbfc;          /* inputs and lifted panels, brighter than the ground */
+  --bg-2: #e4e6ec;             /* tonal band */
+  --bg-3: #d8dbe3;
+  --line: #cfd3db;
+  --line-strong: #7f828c;      /* 3.3:1 on --bg, WCAG 1.4.11 */
+  --text: #15161a;
+  --text-dim: #4f525a;         /* 7.4:1 on --bg */
+  --accent: #c71c22;           /* 5.4:1 on --bg */
+  --accent-hover: #a3161b;
+  --on-accent: #ffffff;
+  --danger: #8e1a22;
+  --wt-heading: 560;           /* type reads thinner on a light ground */
+
+  /* Primary button, identical in every context, light or dark.
+     #ef5a52 was the lighter red asked for but carries white at only 3.36:1,
+     below the 4.5:1 AA needs for label text. This is the lightest red that
+     still passes: 4.90:1 with white. */
+  --btn: #d2352f;
+  --btn-hover: #b82a25;
+  --btn-text: #ffffff;
+
+  --r: 2px;
+  --maxw: 1240px;
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+  --section-y: clamp(4.5rem, 11vw, 9rem);
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur: 0.6s;
+
+  color-scheme: light;   /* committed light, not system-dependent */
+}
+
+/* --- Contrast blocks ----------------------------------------------------
+   A deliberate bookend rather than sections flipping at random: dark header
+   and hero at the top, dark call to action and footer at the bottom, light
+   body between them. Implemented by re-declaring the same tokens on a
+   wrapper, so every component inside adapts with no dark variant of its own. */
+.invert {
+  --bg: #191a1f;
+  --surface: #212228;
+  --bg-2: #212228;
+  --bg-3: #2a2b33;
+  --line: #31333c;
+  --line-strong: #74777f;      /* 3.4:1 on the inverted ground */
+  --text: #f1f1f4;
+  --text-dim: #a3a5ae;         /* 7.2:1 on the inverted ground */
+  --accent: #ef5a52;           /* 5.3:1 on the inverted ground */
+  --accent-hover: #f4837c;
+  --on-accent: #24090a;
+  --danger: #f4a6a2;
+  --wt-heading: 500;           /* type reads heavier on a dark ground */
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* --- Reset -------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  overflow-wrap: break-word;
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img, svg, video { display: block; max-width: 100%; height: auto; }
+input, button, textarea, select { font: inherit; color: inherit; }
+
+a { color: var(--accent); text-underline-offset: 0.2em; }
+a:hover { color: var(--accent-hover); }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+::selection { background: var(--accent); color: var(--on-accent); }
+
+/* --- Typography --------------------------------------------------------- */
+h1, h2, h3, h4 {
+  font-weight: var(--wt-heading);
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+/* Only on very narrow viewports, where a single long word at large text can
+   exceed the content box, is breaking mid-word preferable to sideways scroll.
+   Applying this at all widths breaks words like "accountable" on desktop. */
+@media (max-width: 30em) {
+  h1, h2, h3, h4 { overflow-wrap: anywhere; }
+}
+
+/* Larger and lighter than v1: hierarchy comes from scale, not weight. */
+.display {
+  font-size: clamp(2.25rem, 1.35rem + 3.9vw, 4rem);
+  font-weight: var(--wt-heading);
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+.h2 {
+  font-size: clamp(1.875rem, 1.1rem + 3.2vw, 3.25rem);
+  letter-spacing: -0.038em;
+}
+
+.h3 { font-size: 1.25rem; letter-spacing: -0.02em; font-weight: 550; }
+
+.lede {
+  font-size: clamp(1.125rem, 1rem + 0.55vw, 1.375rem);
+  line-height: 1.5;
+  color: var(--text-dim);
+  max-width: 40ch;
+}
+
+.prose { max-width: 60ch; color: var(--text-dim); }
+.prose + .prose { margin-top: 1.125rem; }
+
+/* Mono is reserved for genuine labels and data, never decoration. */
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+/* --- Layout ------------------------------------------------------------- */
+.wrap {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+/* A narrow reading column, but aligned to the same left edge as every other
+   section. Centring it gave the page two competing left margins. */
+.wrap--tight { max-width: var(--maxw); }
+.wrap--tight > * { max-width: 46rem; }
+
+.section { padding-block: var(--section-y); }
+.section--line { border-top: 1px solid var(--line); }
+.section--fill { background: var(--bg-2); }
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  z-index: 100;
+  background: var(--accent);
+  color: var(--on-accent);
+  padding: 0.75rem 1.25rem;
+}
+.skip-link:focus { left: 1rem; top: 1rem; color: var(--on-accent); }
+
+/* Section headers stack vertically. No split-header, no floating corner text. */
+.section-head { max-width: 34rem; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+.section-head .h2 { max-width: 15ch; }   /* ch here resolves at the h2 size */
+.section-head .prose { margin-top: 1.125rem; max-width: 52ch; }
+
+/* --- Buttons ------------------------------------------------------------ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9375rem 1.75rem;
+  border: 1px solid transparent;
+  border-radius: var(--r);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s var(--ease), border-color 0.2s var(--ease),
+    color 0.2s var(--ease), transform 0.12s var(--ease);
+}
+.btn:active { transform: translateY(1px); }
+
+@media (min-width: 40em) {
+  .btn { white-space: nowrap; }   /* never wraps at desktop */
+}
+
+.btn--primary {
+  background: var(--btn);
+  color: var(--btn-text);
+  border-color: var(--btn);
+}
+.btn--primary:hover {
+  background: var(--btn-hover);
+  border-color: var(--btn-hover);
+  color: var(--btn-text);
+}
+
+.btn--line {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--line-strong);
+}
+.btn--line:hover { border-color: var(--text); color: var(--text); }
+
+.btn--sm { padding: 0.625rem 1.125rem; font-size: 0.875rem; }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 0.875rem; margin-top: 2.5rem; }
+
+/* --- Header ------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+@supports not (backdrop-filter: blur(1px)) {
+  .site-header { background: var(--bg); }
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;              /* reflows instead of scrolling at large text */
+  row-gap: 0.5rem;
+  gap: 2rem;
+  min-height: 72px;
+}
+
+.nav__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5625rem;
+  flex-shrink: 1;
+  min-width: 0;
+  text-decoration: none;
+  color: var(--text);
+}
+.brand-mark { height: 30px; width: auto; }
+.brand-name {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  /* No nowrap: at 320px with 200% text zoom the wordmark cannot fit on one
+     line, and reflowing is required rather than overflowing (WCAG 1.4.10). */
+  min-width: 0;
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-left: auto;
+  list-style: none;
+  padding: 0;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+.nav__link {
+  font-size: 0.9375rem;
+  color: var(--text-dim);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s var(--ease);
+}
+.nav__link:hover { color: var(--text); }
+
+/* Active item marked with the signal colour, not a background pill. */
+.nav__link[aria-current="page"] { color: var(--text); }
+.nav__link[aria-current="page"]::before {
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 1px;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+  background: var(--accent);
+}
+
+.nav__cta { flex-shrink: 0; }
+
+.nav__toggle {
+  display: none;
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r);
+  padding: 0.4rem 0.55rem;
+  font-size: 1.375rem;
+  line-height: 1;
+  color: var(--text);
+  cursor: pointer;
+}
+.nav__drawer { display: none; }
+
+@media (max-width: 60em) {
+  .nav__toggle { display: block; }
+  .nav__links, .nav__cta { display: none; }
+  .nav__drawer[data-open="true"] { display: block; }
+  .nav__drawer { padding-bottom: 1.5rem; border-top: 1px solid var(--line); }
+  .nav__drawer ul { list-style: none; padding: 0; margin: 0; }
+  .nav__drawer a {
+    display: block;
+    padding: 1rem 0;
+    font-size: 1.125rem;
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+  }
+  .nav__drawer .btn { width: 100%; margin-top: 1.5rem; }
+}
+
+/* --- Hero: asymmetric, type-led, mark as the visual anchor -------------- */
+.hero { padding-top: clamp(3rem, 7vw, 6rem); padding-bottom: clamp(3.5rem, 8vw, 7rem); }
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2.5rem, 6vw, 4rem);
+  align-items: center;
+}
+@media (min-width: 60em) {
+  /* Deliberately uneven: 7/5 rather than a symmetric half-and-half. */
+  .hero__grid { grid-template-columns: 7fr 5fr; }
+}
+
+.hero__mark {
+  width: min(100%, 380px);
+  margin-inline: auto;
+  opacity: 0.96;
+}
+
+/* --- Media --------------------------------------------------------------
+   Aspect ratio is declared so the space is reserved before the file loads,
+   which keeps cumulative layout shift at zero. */
+.media {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--r);
+  background: var(--bg-2);
+}
+.media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.media--16x9 { aspect-ratio: 16 / 9; }
+/* Page headers crop the same 16:9 file shorter so the image supports the
+   headline rather than competing with it. */
+.media--banner { aspect-ratio: 21 / 9; }
+.media--4x3  { aspect-ratio: 4 / 3; }
+.media--3x4  { aspect-ratio: 3 / 4; }
+
+/* The office shot has its subject left of centre, so hold that edge on crop. */
+.media--hold-left img { object-position: 28% 50%; }
+/* The panel photo carries its subject on the right, so hold that edge on crop. */
+.media--hold-right img { object-position: 78% 50%; }
+
+.page-media { margin-block: clamp(2rem, 4vw, 3rem) clamp(2.5rem, 5vw, 4rem); }
+.portrait { max-width: 300px; }
+
+/* --- Rule list: the core structural block, replaces cards --------------- */
+.rules { display: grid; grid-template-columns: 1fr; }
+
+.rule {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem 2.5rem;
+  padding-block: clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid var(--line);
+}
+.rule:last-child { border-bottom: 1px solid var(--line); }
+@media (min-width: 53em) {
+  .rule { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+}
+.rule__label { display: flex; align-items: baseline; gap: 0.875rem; }
+.rule__title { font-size: clamp(1.375rem, 1rem + 1.4vw, 1.875rem); letter-spacing: -0.03em; }
+.rule__body { color: var(--text-dim); }
+.rule__body p { max-width: 56ch; }
+
+/* Inline list inside a rule block, kept sparse (no per-row hairlines). */
+.inline-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  display: grid;
+  gap: 0.625rem 2rem;
+  font-size: 0.9375rem;
+}
+@media (min-width: 40em) { .inline-list { grid-template-columns: 1fr 1fr; } }
+.inline-list li { display: flex; gap: 0.625rem; align-items: baseline; }
+.inline-list li::before {
+  content: "";
+  flex-shrink: 0;
+  width: 10px;
+  height: 1px;
+  margin-top: 0.6em;
+  background: var(--accent);
+}
+
+/* --- Deliverables: grouped chunks, not a hairline-per-row table --------- */
+.groups {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 4vw, 3.5rem);
+}
+@media (min-width: 53em) { .groups { grid-template-columns: repeat(3, 1fr); } }
+.group h3 {
+  margin-bottom: 1.5rem;
+  padding-block: 0.5rem 1rem;
+  border-bottom: 1px solid var(--accent);
+}
+.group ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.75rem; }
+.group li { font-size: 0.9375rem; color: var(--text-dim); }
+
+/* --- Steps: verb-led, measured by a top rule --------------------------- */
+.steps { display: grid; grid-template-columns: 1fr; gap: 0; }
+@media (min-width: 53em) { .steps { grid-template-columns: repeat(3, 1fr); gap: 2.5rem; } }
+.step { padding-top: 1.5rem; border-top: 2px solid var(--accent); }
+.step + .step { margin-top: 2.5rem; }
+@media (min-width: 53em) { .step + .step { margin-top: 0; } }
+.step h3 { font-size: 1.25rem; margin-bottom: 0.75rem; }
+.step p { color: var(--text-dim); font-size: 0.9375rem; max-width: 40ch; }
+
+/* --- Engagement models: two columns divided by a rule ------------------- */
+.models { display: grid; grid-template-columns: 1fr; gap: clamp(2.5rem, 5vw, 4rem); }
+@media (min-width: 53em) {
+  .models { grid-template-columns: 1fr 1fr; gap: 0; }
+  .models > * + * { border-left: 1px solid var(--line); padding-left: clamp(2.5rem, 5vw, 4rem); }
+  .models > *:first-child { padding-right: clamp(2.5rem, 5vw, 4rem); }
+}
+.model h3 { font-size: 1.5rem; margin-bottom: 0.875rem; }
+.model > p { color: var(--text-dim); max-width: 44ch; }
+
+/* --- FAQ: native disclosure, no JS ------------------------------------- */
+.faq { border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary {
+  cursor: pointer;
+  list-style: none;
+  padding-block: 1.5rem;
+  padding-right: 2.5rem;
+  position: relative;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  transition: color 0.2s var(--ease);
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary:hover { color: var(--accent); }
+.faq summary::after {
+  content: "";
+  position: absolute;
+  right: 0.25rem;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform 0.25s var(--ease);
+}
+.faq details[open] summary::after { transform: translateY(-30%) rotate(-135deg); }
+.faq .faq__body { padding-bottom: 1.75rem; color: var(--text-dim); max-width: 62ch; }
+
+/* --- CTA: full-bleed statement, not a coloured box ---------------------- */
+/* Sits between the light body and the dark footer, so it takes the tonal band
+   rather than the footer's ground. Two adjacent blocks of the same dark read
+   as one undifferentiated mass. */
+.cta { background: var(--bg-2); }
+.cta__inner { display: grid; gap: 2rem; }
+@media (min-width: 53em) {
+  .cta__inner { grid-template-columns: 1fr auto; align-items: end; }
+}
+
+/* --- Forms -------------------------------------------------------------- */
+.form { display: grid; gap: 1.5rem; }
+.field { display: grid; gap: 0.5rem; }
+.field label { font-size: 0.9375rem; font-weight: 500; color: var(--text); }
+.field .hint { font-size: 0.8125rem; color: var(--text-dim); }
+
+.field input, .field select, .field textarea {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 1rem;
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.field textarea { min-height: 10rem; resize: vertical; }
+.field input::placeholder, .field textarea::placeholder { color: var(--text-dim); opacity: 1; }
+.field input:focus, .field select:focus, .field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+.field .error { font-size: 0.8125rem; font-weight: 500; color: var(--danger); display: none; }
+.field[data-invalid="true"] input,
+.field[data-invalid="true"] textarea,
+.field[data-invalid="true"] select { border-color: var(--danger); }
+.field[data-invalid="true"] .error { display: block; }
+
+.form__status { border: 1px solid; border-radius: var(--r); padding: 1rem 1.125rem; font-size: 0.9375rem; }
+.form__status[hidden] { display: none; }
+.form__status--ok { border-color: var(--accent); color: var(--text); background: var(--bg-2); }
+.form__status--err { border-color: var(--danger); color: var(--text); background: var(--bg-2); }
+.btn[aria-busy="true"] { opacity: 0.7; pointer-events: none; }
+
+/* --- Contact layout ------------------------------------------------------ */
+.contact-grid { display: grid; grid-template-columns: 1fr; gap: clamp(2.5rem, 6vw, 5rem); }
+@media (min-width: 60em) { .contact-grid { grid-template-columns: 7fr 4fr; } }
+.detail-list { display: grid; gap: 1.75rem; margin: 0; }
+.detail-list dt { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.375rem; }
+.detail-list dd { margin: 0; font-size: 1.0625rem; }
+
+/* --- Page head ----------------------------------------------------------- */
+.page-head { padding-block: clamp(3rem, 7vw, 5.5rem) clamp(3rem, 6vw, 4.5rem); }
+
+/* Text left, image right, matching the home hero. A full-width banner here
+   made the image compete with the headline instead of supporting it. */
+.page-head__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: center;
+}
+@media (min-width: 60em) {
+  .page-head__grid { grid-template-columns: 6fr 5fr; }
+}
+/* A step below the home hero in the type hierarchy, which also keeps the
+   headline to two lines in the narrower text column. */
+.page-head .display {
+  font-size: clamp(2rem, 1.2rem + 3.1vw, 3.25rem);
+  max-width: 18ch;
+}
+.page-head .prose { margin-top: 1.5rem; }
+
+/* --- Footer -------------------------------------------------------------- */
+.site-footer { border-top: 1px solid var(--line); padding-block: clamp(3rem, 6vw, 4.5rem) 2rem; }
+.footer__grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; }
+@media (min-width: 47.5em) { .footer__grid { grid-template-columns: 2fr 1fr 1fr; } }
+.footer__brand p { color: var(--text-dim); font-size: 0.9375rem; max-width: 32ch; margin-top: 1rem; }
+.site-footer h2 {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 1.125rem;
+}
+.site-footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.75rem; }
+.site-footer a { color: var(--text); text-decoration: none; font-size: 0.9375rem; }
+.site-footer a:hover { color: var(--accent); }
+
+.footer__bar {
+  margin-top: clamp(3rem, 6vw, 4rem);
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  color: var(--text-dim);
+}
+
+/* --- Motion (intensity 6) ------------------------------------------------ */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .js [data-reveal].is-visible { opacity: 1; transform: none; }
+
+  /* Hero enters on load rather than on scroll: it is already in view. */
+  .js .hero [data-enter] {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: enter 0.75s var(--ease) forwards;
+    animation-delay: var(--enter-delay, 0ms);
+  }
+  @keyframes enter { to { opacity: 1; transform: none; } }
+}
+
+@media print {
+  [data-reveal], .hero [data-enter] { opacity: 1 !important; transform: none !important; animation: none !important; }
+  .site-header { position: static; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --- Narrow-width safety -------------------------------------------------
+   Grid items default to min-width:auto, so a long unbreakable token (an email
+   address) sets the column's minimum and forces horizontal scroll at small
+   sizes. `break-word` permits a break but does not lower the min-content width;
+   `anywhere` does, which is what actually lets the column shrink. */
+.footer__grid > *,
+.contact-grid > *,
+.groups > *,
+.models > *,
+.rule > *,
+.steps > * { min-width: 0; }
+
+.site-footer a,
+.detail-list dd,
+.faq__body,
+.prose { overflow-wrap: anywhere; }
+
+/* --- Utilities ----------------------------------------------------------- */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
